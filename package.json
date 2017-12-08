@@ -1,5 +1,7 @@
 {
   "name": "final_dbms_project",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7"
+  }
 }
