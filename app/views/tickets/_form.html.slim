@@ -7,5 +7,6 @@
   = f.association :destination
 
   - unless @ticket.new_record?
-    = f.input :updated_at, as: :hidden
+    = f.input :old_updated_time, as: :hidden
+    
   = f.submit class: 'btn'

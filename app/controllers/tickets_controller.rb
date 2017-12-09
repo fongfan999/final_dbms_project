@@ -26,14 +26,11 @@ class TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.updated_at.to_s <= old_updated_time
-      if @ticket.update(ticket_params)
-        redirect_to @ticket, notice: 'Ticket was successfully updated.'
-      else
-        render :edit
-      end
+    if @ticket.update(ticket_params)
+      redirect_to @ticket, notice: 'Ticket was successfully updated.'
     else
-      redirect_to :root, arlet: "Someone was update this ticket please check again and update ticket again"
+      flash[:alert] = "#{@ticket.errors.full_messages.to_sentence}"
+      redirect_to [:edit, @ticket]
     end
   end
 
@@ -48,7 +45,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:flight, :start_date, :price, :quantity, :departure_id, :destination_id)
+      params.require(:ticket).permit(:flight, :start_date, :price, :quantity, :departure_id, :destination_id, :old_updated_time)
     end
 
     def old_updated_time

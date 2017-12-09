@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209042740) do
+ActiveRecord::Schema.define(version: 20171209142105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20171209042740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "flight"
+    t.integer "lock_version", default: 0, null: false
     t.index ["departure_id"], name: "index_tickets_on_departure_id"
     t.index ["destination_id"], name: "index_tickets_on_destination_id"
   end
