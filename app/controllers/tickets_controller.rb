@@ -26,7 +26,7 @@ class TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.update(ticket_params)
+    if @ticket.update_with_optimistic_locking(ticket_params)
       redirect_to @ticket, notice: 'Ticket was successfully updated.'
     else
       flash[:alert] = "#{@ticket.errors.full_messages.to_sentence}"
@@ -45,10 +45,6 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:flight, :start_date, :price, :quantity, :departure_id, :destination_id, :old_updated_time)
-    end
-
-    def old_updated_time
-      params[:ticket][:updated_at].to_datetime.in_time_zone
+      params.require(:ticket).permit(:flight, :start_date, :price, :quantity, :departure_id, :destination_id, :lock_version)
     end
 end
