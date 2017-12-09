@@ -1,0 +1,10 @@
+tr
+  td = ticket.flight
+  td = ticket.start_date
+  td = ticket.price
+  td = ticket.quantity
+  td = ticket.departure.name
+  td = ticket.destination.name
+  td = link_to 'Show', ticket
+  td = link_to 'Edit', edit_ticket_path(ticket)
+  td = link_to 'Destroy', ticket, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,0 +1,25 @@
+div class="#{params[:action]}"
+  blockquote
+    p 
+      strong Flight: 
+      = @ticket.flight
+    p
+      strong Start date: 
+      = display_time @ticket.start_date
+    p
+      strong Price: 
+      = @ticket.price
+    p
+      strong Quantity: 
+      = @ticket.quantity
+    p
+      strong Departure: 
+      = @ticket.departure.name
+    p
+      strong Destination: 
+      = @ticket.destination.name
+
+
+  => link_to 'Edit', edit_ticket_path(@ticket)
+  '|
+  =< link_to 'Back', tickets_path

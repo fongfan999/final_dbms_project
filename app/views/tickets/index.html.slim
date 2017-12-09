@@ -1,0 +1,21 @@
+h1 Listing tickets
+
+table.table
+  thead
+    tr
+      th Flight
+      th Start date
+      th Price
+      th Quantity
+      th Departure
+      th Destination
+      th
+      th
+      th
+
+  tbody
+    = render @tickets
+
+br
+
+= link_to 'New Ticket', new_ticket_path
