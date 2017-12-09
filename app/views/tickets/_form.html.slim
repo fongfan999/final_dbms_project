@@ -5,5 +5,7 @@
   = f.input :quantity
   = f.association :departure
   = f.association :destination
-  
+
+  - unless @ticket.new_record?
+    = f.input :updated_at, as: :hidden
   = f.submit class: 'btn'

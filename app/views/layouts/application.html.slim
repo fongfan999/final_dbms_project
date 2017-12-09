@@ -8,4 +8,7 @@ html
   body
     .container
       div id="#{params[:controller]}"
+        - flash.each do |key, value|
+          = content_tag :div, value, class: "flash #{key}" 
+
         = yield
