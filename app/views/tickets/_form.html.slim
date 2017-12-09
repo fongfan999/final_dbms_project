@@ -1,0 +1,9 @@
+= simple_form_for @ticket do |f|
+  = f.input :flight
+  = f.input :start_date
+  = f.input :price
+  = f.input :quantity
+  = f.association :departure
+  = f.association :destination
+  
+  = f.submit class: 'btn'
