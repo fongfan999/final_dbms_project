@@ -2,7 +2,10 @@ class Ticket < ApplicationRecord
   belongs_to :departure, class_name: "Location"
   belongs_to :destination, class_name: "Location"
 
+  validates :flight, :seat, :start_date, :price, presence: true
+
   validate :should_in_other_location
+  validate :in_future
 
   def update_with_optimistic_locking(attributes)
     update(attributes)
@@ -22,4 +25,10 @@ class Ticket < ApplicationRecord
         self.errors.add(:destination_id, "Destination must be diffirence from departure ")
       end
     end 
+
+    def in_future
+      if self.start_date.to_date <= Time.zone.now.to_date
+        errors.add(:start_date, "Start date must be greater than now!")
+      end
+    end
 end

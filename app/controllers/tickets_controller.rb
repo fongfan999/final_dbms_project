@@ -45,6 +45,6 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:flight, :start_date, :price, :quantity, :departure_id, :destination_id, :lock_version)
+      params.require(:ticket).permit(:flight, :start_date, :price, :seat, :departure_id, :destination_id, :lock_version)
     end
 end

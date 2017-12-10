@@ -8,10 +8,10 @@ div class="#{params[:action]}"
       = display_time @ticket.start_date
     p
       strong Price: 
-      = @ticket.price
+      = number_to_currency @ticket.price
     p
-      strong Quantity: 
-      = @ticket.quantity
+      strong Seat: 
+      = @ticket.seat
     p
       strong Departure: 
       = @ticket.departure.name
