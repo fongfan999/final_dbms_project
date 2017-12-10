@@ -3,6 +3,7 @@ class Ticket < ApplicationRecord
   belongs_to :destination, class_name: "Location"
 
   validates :flight, :seat, :start_date, :price, presence: true
+  validates :seat, uniqueness: {scope: [:flight, :start_date]}
 
   validate :should_in_other_location
   validate :in_future
