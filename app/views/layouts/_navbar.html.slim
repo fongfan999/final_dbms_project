@@ -1,0 +1,7 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      = link_to t('app_name'), root_path, class: 'navbar-brand'
+    ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        li= link_to t('logout'), destroy_user_session_path, method: :delete
