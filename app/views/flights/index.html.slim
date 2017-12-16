@@ -1,0 +1,19 @@
+h1 Listing flights
+
+table.table
+  thead
+    tr
+      th Start time
+      th Departure
+      th Destination
+      th Quantity
+      th
+      th
+      th
+
+  tbody
+    = render @flights
+
+br
+
+= link_to 'New Flight', new_flight_path

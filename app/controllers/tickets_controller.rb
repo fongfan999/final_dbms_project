@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :set_flight
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -27,10 +28,10 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update_with_optimistic_locking(ticket_params)
-      redirect_to @ticket, notice: 'Ticket was successfully updated.'
+      redirect_to [@flight, @ticket], notice: 'Ticket was successfully updated.'
     else
       flash[:alert] = "#{@ticket.errors.full_messages.to_sentence}"
-      redirect_to [:edit, @ticket]
+      redirect_to edit_flight_ticket_path(@flight, @ticket)
     end
   end
 
@@ -40,11 +41,15 @@ class TicketsController < ApplicationController
   end
 
   private
+    def set_flight
+      @flight = Flight.find(params[:flight_id])
+    end
+
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @ticket = @flight.tickets.find(params[:id])
     end
 
     def ticket_params
-      params.require(:ticket).permit(:flight, :start_date, :price, :seat, :departure_id, :destination_id, :lock_version)
+      params.require(:ticket).permit(:price, :lock_version)
     end
 end

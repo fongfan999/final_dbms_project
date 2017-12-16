@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2017-12-16 09:26:27
+  departure_id: 1
+  destination_id: 1
+  quantity: 1
+
+two:
+  start_time: 2017-12-16 09:26:27
+  departure_id: 1
+  destination_id: 1
+  quantity: 1

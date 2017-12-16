@@ -2,7 +2,7 @@ h1 Editing ticket
 
 == render 'form'
 
-=> link_to 'Show', @ticket
+=> link_to 'Show', [@flight, @ticket]
 '|
-=< link_to 'Back', tickets_path
+=< link_to 'Back', flight_tickets_path(@flight)
 

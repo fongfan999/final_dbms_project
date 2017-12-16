@@ -1,0 +1,37 @@
+blockquote
+  p
+    strong Start time: 
+    = display_time @flight.start_time
+  p
+    strong Departure: 
+    = @flight.departure.name
+  p
+    strong Destination: 
+    = @flight.destination.name
+  p
+    strong Quantity: 
+    = @flight.quantity
+
+  => link_to 'Edit', edit_flight_path(@flight)
+  '|
+  =< link_to 'Back', flights_path
+
+
+h1 Listing tickets
+
+table.table
+  thead
+    tr
+      th Departure
+      th Destination
+      th Start date
+      th Price
+      th Seat
+      th
+      th
+      th
+
+  tbody
+    = render @flight.tickets
+
+br

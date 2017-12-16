@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171210135644) do
+ActiveRecord::Schema.define(version: 20171216031008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "flights", force: :cascade do |t|
+    t.datetime "start_time"
+    t.integer "departure_id"
+    t.integer "destination_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "flight_model"
+    t.index ["departure_id"], name: "index_flights_on_departure_id"
+    t.index ["destination_id"], name: "index_flights_on_destination_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
@@ -22,30 +34,13 @@ ActiveRecord::Schema.define(version: 20171210135644) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.datetime "start_date"
     t.float "price"
-    t.integer "departure_id"
-    t.integer "destination_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "flight"
     t.integer "lock_version", default: 0, null: false
     t.string "seat"
-    t.index ["departure_id"], name: "index_tickets_on_departure_id"
-    t.index ["destination_id"], name: "index_tickets_on_destination_id"
-    t.index ["flight", "seat", "start_date"], name: "index_tickets_on_flight_and_seat_and_start_date", unique: true
-#     CREATE TABLE example (
-#     'start_date' datetime
-#     'price' float
-#     'departure_id' integer
-#     'destination_id' integer
-#     'created_at' datetime
-#     'updated_at' datetime
-#     'flight' string
-#     'lock_version' integer
-#      'seat' string
-#     UNIQUE ('start_date', 'flight', 'seat')
-# );
+    t.bigint "flight_id"
+    t.index ["flight_id"], name: "index_tickets_on_flight_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,4 +65,5 @@ ActiveRecord::Schema.define(version: 20171210135644) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tickets", "flights"
 end

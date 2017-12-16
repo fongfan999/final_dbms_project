@@ -1,11 +1,8 @@
 div class="#{params[:action]}"
   blockquote
-    p 
-      strong Flight: 
-      = @ticket.flight
     p
       strong Start date: 
-      = display_time @ticket.start_date
+      = display_time @flight.start_time
     p
       strong Price: 
       = number_to_currency @ticket.price
@@ -14,12 +11,12 @@ div class="#{params[:action]}"
       = @ticket.seat
     p
       strong Departure: 
-      = @ticket.departure.name
+      = @flight.departure.name
     p
       strong Destination: 
-      = @ticket.destination.name
+      = @flight.destination.name
 
 
-  => link_to 'Edit', edit_ticket_path(@ticket)
+  => link_to 'Edit', edit_flight_ticket_path(@flight, @ticket)
   '|
-  =< link_to 'Back', tickets_path
+  =< link_to 'Back', [@flight, @ticket]
