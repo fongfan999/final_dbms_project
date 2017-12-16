@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 20171210135644) do
     t.index ["departure_id"], name: "index_tickets_on_departure_id"
     t.index ["destination_id"], name: "index_tickets_on_destination_id"
     t.index ["flight", "seat", "start_date"], name: "index_tickets_on_flight_and_seat_and_start_date", unique: true
+#     CREATE TABLE example (
+#     'start_date' datetime
+#     'price' float
+#     'departure_id' integer
+#     'destination_id' integer
+#     'created_at' datetime
+#     'updated_at' datetime
+#     'flight' string
+#     'lock_version' integer
+#      'seat' string
+#     UNIQUE ('start_date', 'flight', 'seat')
+# );
   end
 
   create_table "users", force: :cascade do |t|
