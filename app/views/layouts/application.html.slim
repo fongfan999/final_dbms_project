@@ -1,9 +1,12 @@
 doctype html
 html
   head
-    title FinalDbmsProject
+    title= t('app_name')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    = yield
+  body id="#{params[:controller]}"
+    = render 'layouts/navbar'
+    .container
+      = render 'layouts/flash'
+      = yield

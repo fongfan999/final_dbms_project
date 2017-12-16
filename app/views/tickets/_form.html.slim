@@ -1,0 +1,12 @@
+= simple_form_for @ticket do |f|
+  = f.input :flight
+  = f.input :start_date
+  = f.input :price
+  = f.input :seat
+  = f.association :departure
+  = f.association :destination
+
+  - unless @ticket.new_record?
+    = f.input :lock_version, as: :hidden
+    
+  = f.submit class: 'btn'
