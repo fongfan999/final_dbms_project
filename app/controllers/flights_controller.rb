@@ -6,6 +6,7 @@ class FlightsController < ApplicationController
   end
 
   def show
+    @tickets = @flight.tickets.page(params[:page])
   end
 
   def new

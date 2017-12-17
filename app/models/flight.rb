@@ -57,7 +57,7 @@ class Flight < ApplicationRecord
       if self.departure_id == self.destination_id
         self.errors.add(:destination_id, "Destination must be diffirence from departure ")
       end
-    end 
+    end
 
     def in_future
       if self.start_time.to_date <= Time.zone.now.to_date

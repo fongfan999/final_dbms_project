@@ -1,6 +1,6 @@
 class Ticket < ApplicationRecord
   belongs_to :flight
-  
+
   validates :seat, :price, presence: true
   validates :seat, uniqueness: {scope: [:flight_id]}
   validates :price, numericality: {greater_then: 0}

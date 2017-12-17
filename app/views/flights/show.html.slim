@@ -1,15 +1,15 @@
 blockquote
   p
-    strong Start time: 
+    strong Start time:
     = display_time @flight.start_time
   p
-    strong Departure: 
+    strong Departure:
     = @flight.departure.name
   p
-    strong Destination: 
+    strong Destination:
     = @flight.destination.name
   p
-    strong Quantity: 
+    strong Quantity:
     = @flight.quantity
 
   => link_to 'Edit', edit_flight_path(@flight)
@@ -32,6 +32,8 @@ table.table
       th
 
   tbody
-    = render @flight.tickets
+    = render @tickets
 
 br
+
+= render 'shared/pagination'
