@@ -11,7 +11,9 @@ class Flight < ApplicationRecord
   validate :should_in_other_location
   validate :in_future
 
-  after_create :create_tickets
+  before_create :create_tickets
+
+  accepts_nested_attributes_for :tickets
 
   # CREATE FUNCTION tickets_fields_presence() RETURNS trigger AS $tickets_fields_presence
   #   BEGIN
@@ -61,30 +63,19 @@ class Flight < ApplicationRecord
     end
 
     def in_future
-      if self.start_time.to_date <= Time.zone.now.to_date
+      if self.start_time.to_date <= Date.current
         errors.add(:start_date, "Start date must be greater than now!")
       end
     end
 
     def create_tickets
-      ActiveRecord::Base.transaction do
-        self.quantity.times do |index|
-          ticket = self.tickets.build(
-            seat: generate_ticket_seat(index),
-            price: self.price
-          )
-
-          if ticket.valid?
-           ticket.save
-          else 
-            raise ActiveRecord::RecordInvalid.new(self)
-          end
+      self.tickets_attributes =
+        quantity.times.map do |index|
+          { seat: generate_ticket_seat(index + 1), price: price, flight_id: id }
         end
-
-      end
     end
 
     def generate_ticket_seat(i)
-      self.flight_model + "_" + i.to_s
+      "#{flight_model.upcase}_#{i}"
     end
 end

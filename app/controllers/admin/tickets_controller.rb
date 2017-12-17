@@ -3,7 +3,7 @@ class Admin::TicketsController < Admin::ApplicationController
   before_action :set_ticket, only: %i(show edit update destroy)
 
   def index
-    @tickets = Ticket.includes(flight: [:departure, :destination]).page(params[:page])
+    @tickets = Ticket.includes(:owner, flight: [:departure, :destination]).page(params[:page])
   end
 
   def show
