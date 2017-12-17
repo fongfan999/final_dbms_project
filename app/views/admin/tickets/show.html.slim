@@ -2,7 +2,7 @@ div class="#{params[:action]}"
   blockquote
     p
       strong Start date:
-      = display_time @flight.start_time
+      = @flight.start_time
     p
       strong Price:
       = number_to_currency @ticket.price
