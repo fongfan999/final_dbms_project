@@ -1,10 +1,12 @@
 class Ticket < ApplicationRecord
   belongs_to :flight
+  belongs_to :owner, class_name: 'User'
+
+  scope :available, -> { where(owner_id: nil) }
 
   validates :seat, :price, presence: true
   validates :seat, uniqueness: {scope: [:flight_id]}
   validates :price, numericality: {greater_then: 0}
-
 
   def update_with_optimistic_locking(attributes)
     update(attributes)

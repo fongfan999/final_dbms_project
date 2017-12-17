@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217042834) do
+ActiveRecord::Schema.define(version: 20171217052926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,9 @@ ActiveRecord::Schema.define(version: 20171217042834) do
     t.integer "lock_version", default: 0, null: false
     t.string "seat"
     t.bigint "flight_id"
+    t.bigint "owner_id"
     t.index ["flight_id"], name: "index_tickets_on_flight_id"
+    t.index ["owner_id"], name: "index_tickets_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,4 +69,5 @@ ActiveRecord::Schema.define(version: 20171217042834) do
   end
 
   add_foreign_key "tickets", "flights"
+  add_foreign_key "tickets", "users", column: "owner_id"
 end

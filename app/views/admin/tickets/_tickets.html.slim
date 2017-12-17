@@ -1,11 +1,13 @@
 table.table
   thead
     tr
-      th Departure
-      th Destination
-      th Start date
+      - if index_action?
+        th Departure
+        th Destination
+        th Start date
       th Price
       th Seat
+      th Owner
       th
       th
       th
