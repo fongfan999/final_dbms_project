@@ -1,7 +1,9 @@
-nav.navbar.navbar-default
+nav.navbar.navbar-default.lightgreen-background
   .container-fluid
     .navbar-header
       = link_to t('app_name'), root_path, class: 'navbar-brand'
-    ul.nav.navbar-nav.navbar-right
-      - if user_signed_in?
-        li= link_to t('logout'), destroy_user_session_path, method: :delete
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li.nav-item= current_user.email
+          li.nav-item= link_to t('logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
