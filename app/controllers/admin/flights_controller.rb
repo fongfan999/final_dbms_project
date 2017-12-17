@@ -1,4 +1,4 @@
-class FlightsController < ApplicationController
+class Admin::FlightsController < Admin::ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,7 +20,7 @@ class FlightsController < ApplicationController
     @flight = Flight.new(flight_params)
 
     if @flight.save
-      redirect_to @flight, notice: 'Flight was successfully created.'
+      redirect_to [:admin, @flight], notice: 'Flight was successfully created.'
     else
       flash[:alert] = @flight.errors.full_messages.to_sentence
       render :new
@@ -29,7 +29,7 @@ class FlightsController < ApplicationController
 
   def update
     if @flight.update(flight_params)
-      redirect_to @flight, notice: 'Flight was successfully updated.'
+      redirect_to [:admin, @flight], notice: 'Flight was successfully updated.'
     else
       flash[:alert] = @flight.errors.full_messages.to_sentence
       render :edit
@@ -38,7 +38,7 @@ class FlightsController < ApplicationController
 
   def destroy
     @flight.destroy
-    redirect_to flights_url, notice: 'Flight was successfully destroyed.'
+    redirect_to admin_flights_url, notice: 'Flight was successfully destroyed.'
   end
 
   private

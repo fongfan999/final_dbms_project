@@ -1,0 +1,7 @@
+h1 Editing ticket
+
+= render 'form', flight: @flight, ticket: @ticket
+
+=> link_to 'Show', [:admin, @flight, @ticket]
+'|
+=< link_to 'Back', admin_flight_tickets_path(@flight)

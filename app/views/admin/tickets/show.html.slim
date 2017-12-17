@@ -1,0 +1,22 @@
+div class="#{params[:action]}"
+  blockquote
+    p
+      strong Start date:
+      = @flight.start_time
+    p
+      strong Price:
+      = number_to_currency @ticket.price
+    p
+      strong Seat:
+      = @ticket.seat
+    p
+      strong Departure:
+      = @flight.departure.name
+    p
+      strong Destination:
+      = @flight.destination.name
+
+
+  => link_to 'Edit', [:edit, :admin, @flight, @ticket]
+  '|
+  =< link_to 'Back', [:admin, @flight, @ticket]

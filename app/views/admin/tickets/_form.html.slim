@@ -1,0 +1,21 @@
+= simple_form_for [:admin, flight, ticket] do |f|
+  blockquote
+    p
+      |From
+      span.text-warning
+        = flight.departure.name
+      | to
+      span.text-success
+        = flight.destination.name
+    p = flight.start_time
+
+    p
+      |Seat:
+      span.text-info
+        = ticket.seat.titleize
+  = f.input :price
+
+  - if ticket.persisted?
+    = f.input :lock_version, as: :hidden
+
+  = f.button :submit

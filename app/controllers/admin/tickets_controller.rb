@@ -1,4 +1,4 @@
-class TicketsController < ApplicationController
+class Admin::TicketsController < Admin::ApplicationController
   before_action :set_flight
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
@@ -20,7 +20,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
 
     if @ticket.save
-      redirect_to @ticket, notice: 'Ticket was successfully created.'
+      redirect_to [:admin, @flight, @ticket], notice: 'Ticket was successfully created.'
     else
       render :new
     end
@@ -28,16 +28,16 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update_with_optimistic_locking(ticket_params)
-      redirect_to [@flight, @ticket], notice: 'Ticket was successfully updated.'
+      redirect_to [:admin, @flight, @ticket], notice: 'Ticket was successfully updated.'
     else
       flash[:alert] = "#{@ticket.errors.full_messages.to_sentence}"
-      redirect_to edit_flight_ticket_path(@flight, @ticket)
+      redirect_to [:edit, :admin, @flight, @ticket]
     end
   end
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
+    redirect_to [:admin, @flight], notice: 'Ticket was successfully destroyed.'
   end
 
   private

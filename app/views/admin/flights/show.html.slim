@@ -1,7 +1,7 @@
 blockquote
   p
     strong Start time:
-    = display_time @flight.start_time
+    = @flight.start_time
   p
     strong Departure:
     = @flight.departure.name
@@ -12,9 +12,9 @@ blockquote
     strong Quantity:
     = @flight.quantity
 
-  => link_to 'Edit', edit_flight_path(@flight)
+  => link_to 'Edit', [:edit, :admin, @flight]
   '|
-  =< link_to 'Back', flights_path
+  =< link_to 'Back', admin_flights_path
 
 
 h1 Listing tickets
@@ -32,7 +32,7 @@ table.table
       th
 
   tbody
-    = render @tickets
+    = render @tickets, flight: @flight
 
 br
 
