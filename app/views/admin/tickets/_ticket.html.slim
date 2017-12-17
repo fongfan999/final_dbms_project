@@ -1,0 +1,10 @@
+tr
+  td = ticket.flight.departure.name
+  td = ticket.flight.destination.name
+  td = display_time ticket.flight.start_time
+  td = number_to_currency ticket.price
+  td = ticket.seat
+  td = link_to 'Show', [:admin, flight, ticket]
+  td = link_to 'Edit', [:edit, :admin, flight, ticket]
+  td = link_to 'Destroy', [:admin, flight, ticket],
+    data: { confirm: 'Are you sure?' }, method: :delete

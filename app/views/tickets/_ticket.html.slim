@@ -1,9 +1,0 @@
-tr
-  td = ticket.flight.departure.name
-  td = ticket.flight.destination.name
-  td = display_time ticket.flight.start_time
-  td = number_to_currency ticket.price
-  td = ticket.seat
-  td = link_to 'Show', [@flight, ticket]
-  td = link_to 'Edit', edit_flight_ticket_path(@flight,ticket)
-  td = link_to 'Destroy', [@flight, ticket], data: { confirm: 'Are you sure?' }, method: :delete

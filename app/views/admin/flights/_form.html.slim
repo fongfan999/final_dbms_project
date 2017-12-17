@@ -1,4 +1,4 @@
-= simple_form_for @flight do |f|
+= simple_form_for [:admin, flight] do |f|
   = f.input :start_time
   = f.input :flight_model
   = f.input :quantity, label: "Number of seats in flight"
@@ -6,4 +6,4 @@
   = f.association :departure
   = f.association :destination
 
-  = f.submit class: 'btn'
+  = f.button :submit
