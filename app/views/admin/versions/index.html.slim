@@ -13,6 +13,10 @@ div
       strong Destination:
       = @ticket.flight.destination.name
 
+
+h3= "Price: #{number_to_currency @ticket.price}"
+h3= "Owner: #{@ticket.owner&.email}"
+
 hr
 
 h1 Ticket's versions
@@ -25,11 +29,12 @@ table.table
       th Owner
       th
   tbody
-    - @tickets.each do |ticket, time|
+    - @tickets.each do |ticket, version|
       tr
-        td= time
+        td= version.created_at
         td= number_to_currency ticket.price
         td= ticket.owner&.email
-        td= 'reify'
+        td= link_to 'Reify', reify_admin_ticket_path(ticket, version_id: version.id),
+          method: :post, data: { confirm: 'Are you sure?' }
 
 = render 'shared/pagination', collection: @tickets

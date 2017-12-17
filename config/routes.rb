@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :tickets, only: :index do
       resources :versions, only: :index
+      post :reify, on: :member
     end
   end
 

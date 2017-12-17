@@ -1,5 +1,5 @@
 class Ticket < ApplicationRecord
-  TRACKING_ATTRS = %i(price owner_id).freeze
+  TRACKING_ATTRS = %w(price owner_id).freeze
 
   has_paper_trail only: TRACKING_ATTRS
 
