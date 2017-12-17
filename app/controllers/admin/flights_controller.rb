@@ -14,11 +14,12 @@ class Admin::FlightsController < Admin::ApplicationController
   end
 
   def edit
+    @flight
   end
 
   def create
     @flight = Flight.new(flight_params)
-
+    
     if @flight.save
       redirect_to [:admin, @flight], notice: 'Flight was successfully created.'
     else
@@ -28,6 +29,8 @@ class Admin::FlightsController < Admin::ApplicationController
   end
 
   def update
+    @flight.lock!
+    sleep 10
     if @flight.update(flight_params)
       redirect_to [:admin, @flight], notice: 'Flight was successfully updated.'
     else

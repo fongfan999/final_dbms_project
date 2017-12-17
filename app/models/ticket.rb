@@ -3,7 +3,7 @@ class Ticket < ApplicationRecord
 
   validates :seat, :price, presence: true
   validates :seat, uniqueness: {scope: [:flight_id]}
-  validates :price, numericality: {greater_then: 0}
+  validates :price, numericality: {greater_than: 0}
 
 
   def update_with_optimistic_locking(attributes)

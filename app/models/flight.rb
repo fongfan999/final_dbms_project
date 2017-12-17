@@ -7,6 +7,7 @@ class Flight < ApplicationRecord
 
   validates :start_time, :flight_model, :quantity, presence: true
   validates :quantity, numericality: {greater_then: 0}
+  validates :flight_model, uniqueness: {scope: [:start_time], message: "The flight already created with  start time"}
   validate :should_in_other_location
   validate :in_future
 
@@ -66,11 +67,20 @@ class Flight < ApplicationRecord
     end
 
     def create_tickets
-      self.quantity.times do |index|
-        self.tickets.create(
-          seat: generate_ticket_seat(index),
-          price: self.price
-        )
+      ActiveRecord::Base.transaction do
+        self.quantity.times do |index|
+          ticket = self.tickets.build(
+            seat: generate_ticket_seat(index),
+            price: self.price
+          )
+
+          if ticket.valid?
+           ticket.save
+          else 
+            raise ActiveRecord::RecordInvalid.new(self)
+          end
+        end
+
       end
     end
 
