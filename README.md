@@ -6,7 +6,7 @@ rDBMS: [postgresql](https://www.postgresql.org/)
 - Step 3: run cd final_dbms_project
 - Step 4: run bundle
 - Step 5: run rails db:create
-- Stem 6:  psql -d final_dbms_project -f database.sql
+- Stem 6:  psql -d final_dbms_project_development -f database.sql
 - Step 7: run rails db:migrate
 - Step 8: run db:seed
 - Step : Enjoying
