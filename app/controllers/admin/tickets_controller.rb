@@ -1,5 +1,5 @@
 class Admin::TicketsController < Admin::ApplicationController
-  before_action :set_flight, except: :index
+  before_action :set_flight, except: %i(index reify)
   before_action :set_ticket, only: %i(show edit update destroy)
 
   def index
@@ -38,6 +38,14 @@ class Admin::TicketsController < Admin::ApplicationController
   def destroy
     @ticket.destroy
     redirect_to [:admin, @flight], notice: 'Ticket was successfully destroyed.'
+  end
+
+  def reify
+    @ticket = Ticket.find(params[:id])
+    service = TicketService.new(@ticket, params[:version_id])
+    message = service.reify_and_save!
+
+    redirect_to admin_ticket_versions_path(@ticket), message
   end
 
   private

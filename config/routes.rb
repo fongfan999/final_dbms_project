@@ -8,7 +8,10 @@ Rails.application.routes.draw do
       resources :tickets, only: %i(show edit update destroy)
     end
 
-    resources :tickets, only: :index
+    resources :tickets, only: :index do
+      resources :versions, only: :index
+      post :reify, on: :member
+    end
   end
 
   resources :bookings, only: :create
