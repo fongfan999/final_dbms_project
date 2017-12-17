@@ -1,4 +1,8 @@
 class Ticket < ApplicationRecord
+  TRACKING_ATTRS = %i(price owner_id).freeze
+
+  has_paper_trail only: TRACKING_ATTRS
+
   belongs_to :flight
   belongs_to :owner, class_name: 'User', optional: true
 
@@ -7,7 +11,7 @@ class Ticket < ApplicationRecord
   validates :seat, :price, presence: true
   validates :seat, uniqueness: {scope: [:flight_id]}
   validates :price, numericality: {greater_then: 0}
-  validates :owner_id, uniqueness: { scope: :flight_id }
+  validates :owner_id, uniqueness: { scope: :flight_id }, allow_nil: true
 
   def update_with_optimistic_locking(attributes)
     update(attributes)

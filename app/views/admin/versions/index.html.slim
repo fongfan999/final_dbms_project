@@ -1,0 +1,35 @@
+div
+  blockquote
+    p
+      strong Start date:
+      = @ticket.flight.start_time
+    p
+      strong Seat:
+      = @ticket.seat
+    p
+      strong Departure:
+      = @ticket.flight.departure.name
+    p
+      strong Destination:
+      = @ticket.flight.destination.name
+
+hr
+
+h1 Ticket's versions
+
+table.table
+  thead
+    tr
+      th Time
+      th Price
+      th Owner
+      th
+  tbody
+    - @tickets.each do |ticket, time|
+      tr
+        td= time
+        td= number_to_currency ticket.price
+        td= ticket.owner&.email
+        td= 'reify'
+
+= render 'shared/pagination', collection: @tickets
