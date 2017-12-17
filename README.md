@@ -1,4 +1,4 @@
-# Ticket
+# Ticket Booking
 rDBMS: [postgresql](https://www.postgresql.org/) 
 - Step 1: Install rails(skip this step if your pc already had rails)
   [Install rails](https://gorails.com/setup/ubuntu/16.04)
