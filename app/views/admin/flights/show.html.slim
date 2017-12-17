@@ -16,24 +16,4 @@ blockquote
   '|
   =< link_to 'Back', admin_flights_path
 
-
-h1 Listing tickets
-
-table.table
-  thead
-    tr
-      th Departure
-      th Destination
-      th Start date
-      th Price
-      th Seat
-      th
-      th
-      th
-
-  tbody
-    = render @tickets, flight: @flight
-
-br
-
-= render 'shared/pagination'
+= render 'admin/tickets/tickets', tickets: @tickets

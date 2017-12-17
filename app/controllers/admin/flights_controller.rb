@@ -6,7 +6,7 @@ class Admin::FlightsController < Admin::ApplicationController
   end
 
   def show
-    @tickets = @flight.tickets.page(params[:page])
+    @tickets = @flight.tickets.includes(flight: [:departure, :destination]).page(params[:page])
   end
 
   def new
