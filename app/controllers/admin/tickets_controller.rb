@@ -1,9 +1,9 @@
 class Admin::TicketsController < Admin::ApplicationController
-  before_action :set_flight
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_flight, except: :index
+  before_action :set_ticket, only: %i(show edit update destroy)
 
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.includes(flight: [:departure, :destination]).page(params[:page])
   end
 
   def show

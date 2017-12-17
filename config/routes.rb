@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :flights do
-      resources :tickets, except: [:new, :create]
+      resources :tickets, only: %i(show edit update destroy)
     end
+
+    resources :tickets, only: :index
   end
 end

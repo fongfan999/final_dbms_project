@@ -4,7 +4,7 @@ tr
   td = ticket.flight.start_time
   td = number_to_currency ticket.price
   td = ticket.seat
-  td = link_to 'Show', [:admin, flight, ticket]
-  td = link_to 'Edit', [:edit, :admin, flight, ticket]
-  td = link_to 'Destroy', [:admin, flight, ticket],
+  td = link_to 'Show', [:admin, ticket.flight, ticket]
+  td = link_to 'Edit', [:edit, :admin, ticket.flight, ticket]
+  td = link_to 'Destroy', [:admin, ticket.flight, ticket],
     data: { confirm: 'Are you sure?' }, method: :delete
