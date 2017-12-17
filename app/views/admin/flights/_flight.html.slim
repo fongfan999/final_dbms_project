@@ -1,0 +1,9 @@
+tr
+  td = flight.start_time
+  td = flight.departure_id
+  td = flight.destination_id
+  td = flight.quantity
+  td = link_to 'Show', [:admin, flight]
+  td = link_to 'Edit', [:edit, :admin, flight]
+  td = link_to 'Destroy', [:admin, flight], data: { confirm: 'Are you sure?' },
+    method: :delete

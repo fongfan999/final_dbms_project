@@ -1,0 +1,19 @@
+.flight-form
+  = simple_form_for [:admin, flight] do |f|
+    .row
+      .col-md-6
+        = f.input :start_time
+      .col-md-6
+        = f.input :flight_model
+    .row
+      .col-md-6
+        = f.input :quantity, label: "Number of seats in flight"
+      .col-md-6
+        = f.input :price, label: "Price of each ticket", as: :numeric
+    .row
+      .col-md-6
+        = f.association :departure
+      .col-md-6
+        = f.association :destination
+    .text-center
+      = f.button :submit, class: 'btn btn-primary'

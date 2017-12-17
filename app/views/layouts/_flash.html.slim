@@ -1,0 +1,3 @@
+- unless flash.blank?
+  - flash.each do |key, value|
+    = content_tag :div, value, class: "alert alert-#{flash_class key}"

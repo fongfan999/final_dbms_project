@@ -1,0 +1,7 @@
+h1.text-center Editing ticket
+
+= render 'form', flight: @flight, ticket: @ticket
+
+=> link_to 'Show', [:admin, @flight, @ticket]
+'|
+=< link_to 'Back', [:admin, @flight]

@@ -1,0 +1,17 @@
+tr
+  - if index_action?
+    td = ticket.flight.departure.name
+    td = ticket.flight.destination.name
+    td = ticket.flight.start_time
+
+  td = number_to_currency ticket.price
+  td = ticket.seat
+  - if current_user.admin?
+    td = ticket.owner&.email
+    td = link_to 'Show', [:admin, ticket.flight, ticket]
+    td = link_to 'Edit', [:edit, :admin, ticket.flight, ticket]
+    td = link_to 'Destroy', [:admin, ticket.flight, ticket],
+      data: { confirm: 'Are you sure?' }, method: :delete
+  - else
+    td= link_to 'Book this ticket', bookings_path(ticket_id: ticket.id),
+      method: :post, data: { confirm: 'Are you sure?' }

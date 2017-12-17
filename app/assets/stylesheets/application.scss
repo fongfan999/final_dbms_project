@@ -1,2 +1,5 @@
-@import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
-@import "bootstrap-sass/assets/stylesheets/bootstrap";
+@import 'bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'common';
+@import 'flights';
+@import 'tickets';

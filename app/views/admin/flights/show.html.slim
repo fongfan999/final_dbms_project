@@ -1,0 +1,19 @@
+blockquote
+  p
+    strong Start time: 
+    = @flight.start_time
+  p
+    strong Departure: 
+    = @flight.departure.name
+  p
+    strong Destination: 
+    = @flight.destination.name
+  p
+    strong Quantity: 
+    = @flight.quantity
+
+  => link_to 'Edit', [:edit, :admin, @flight]
+  '|
+  =< link_to 'Back', admin_flights_path
+
+= render 'admin/tickets/tickets', tickets: @tickets

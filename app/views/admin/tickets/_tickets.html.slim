@@ -1,0 +1,20 @@
+table.table.table-hover
+  thead
+    tr
+      - if index_action?
+        th Departure
+        th Destination
+        th Start date
+      th Price
+      th Seat
+      - if current_user.admin?
+        th Owner
+      th
+      - if current_user.admin?
+        th
+        th
+
+  tbody
+    = render partial: 'admin/tickets/ticket', collection: tickets
+
+= render 'shared/pagination', collection: tickets

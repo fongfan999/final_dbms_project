@@ -1,0 +1,21 @@
+.col-md-4
+  .card
+    .text-center
+      = image_tag 'ticket', class: "card-img-top"
+    .card-body
+      h4.card-title
+        span.departure.text-primary
+          = ticket.flight.departure.name
+        |- 
+        span.destination.text-success
+          = ticket.flight.destination.name
+      p.card-text = ticket.flight.start_time
+      p.card-text.text-warning
+        |Price: 
+        = number_to_currency ticket.price
+      p.card-text.text-info
+        |Seat: 
+        = ticket.seat.titleize
+      .text-center
+        = link_to 'Book this ticket', bookings_path(ticket_id: ticket.id),
+          method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'
