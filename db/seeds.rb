@@ -23,3 +23,25 @@ unless Location.any?
     {name: "Chu Lai (VCL)"}
   ])
 end
+
+unless User.any?
+  User.create!([
+    {
+      email: 'test@otadi.com',
+      password: '123123',
+      password_confirmation: '123123'
+    },
+    {
+      email: 'test2@otadi.com',
+      password: '123123',
+      password_confirmation: '123123'
+    },
+    {
+      email: 'admin@otadi.com',
+      password: '123123',
+      password_confirmation: '123123',
+      admin: true
+    },
+  ])
+  
+end
