@@ -1,2 +1,3 @@
-h1.text-center Welcome
-= render 'admin/tickets/tickets', tickets: @tickets
+.row 
+  = render partial: 'welcome/ticket', collection: @tickets
+= render 'shared/pagination', collection: @tickets

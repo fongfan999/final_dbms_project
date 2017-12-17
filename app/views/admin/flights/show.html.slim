@@ -1,15 +1,15 @@
 blockquote
   p
-    strong Start time:
+    strong Start time: 
     = @flight.start_time
   p
-    strong Departure:
+    strong Departure: 
     = @flight.departure.name
   p
-    strong Destination:
+    strong Destination: 
     = @flight.destination.name
   p
-    strong Quantity:
+    strong Quantity: 
     = @flight.quantity
 
   => link_to 'Edit', [:edit, :admin, @flight]
