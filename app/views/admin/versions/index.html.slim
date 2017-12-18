@@ -31,6 +31,7 @@ table.table.table-hover
   tbody
     - @tickets.each do |ticket, version|
       tr
+        - next if ticket.nil?
         td= version.created_at
         td= number_to_currency ticket.price
         td= ticket.owner&.email

@@ -8,4 +8,5 @@ nav.navbar.navbar-default.lightgreen-background
           li.nav-item= link_to current_user.email, '#', class: 'nav-link'
           - if current_user.admin
             li.nav-item= link_to 'Flights manager', admin_flights_path
+            li.nav-item= link_to 'Users manager', admin_users_path
           li.nav-item= link_to t('logout'), destroy_user_session_path, method: :delete, class: 'nav-link'
