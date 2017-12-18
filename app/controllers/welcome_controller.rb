@@ -6,9 +6,7 @@ class WelcomeController < ApplicationController
 
     if params[:welcome]
       @tickets = 
-        Ticket.joins(:flight).joins("INNER JOIN locations departures ON flights.departure_id = departures.id").joins("INNER JOIN locations destinations ON flights.destination_id = destinations.id")
-          .where("departures.name iLIKE ? AND destinations.name iLIKE ?", 
-            "%#{params[:welcome][:departure]}%","%#{params[:welcome][:destination]}%")
+        Ticket.search(params[:welcome])
        @tickets = Kaminari.paginate_array(@tickets)
     end
 

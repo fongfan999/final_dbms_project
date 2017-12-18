@@ -7,6 +7,13 @@ class Ticket < ApplicationRecord
   belongs_to :owner, class_name: 'User', optional: true
 
   scope :available, -> { where(owner_id: nil) }
+  scope :search, ->(options) {
+    joins(:flight)
+    .joins("INNER JOIN locations departures ON flights.departure_id = departures.id")
+    .joins("INNER JOIN locations destinations ON flights.destination_id = destinations.id")
+    .where("departures.name iLIKE ? AND destinations.name iLIKE ?", 
+            "%#{options[:departure]}%","%#{options[:destination]}%")
+  }
 
   validates :seat, :price, presence: true
   validates :seat, uniqueness: {scope: [:flight_id]}
@@ -24,4 +31,6 @@ class Ticket < ApplicationRecord
 
       false
   end
+
+
 end
