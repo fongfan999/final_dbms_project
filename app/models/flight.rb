@@ -6,7 +6,7 @@ class Flight < ApplicationRecord
   has_many :tickets, dependent: :destroy
 
   validates :start_time, :flight_model, :quantity, presence: true
-  validates :quantity, numericality: {greater_then: 0}
+  validates :quantity, numericality: {greater_than_or_equal_to: 0}
   validates :flight_model, uniqueness: {scope: [:start_time], message: "The flight already created with  start time"}
   validate :should_in_other_location
   validate :in_future

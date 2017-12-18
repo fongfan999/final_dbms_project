@@ -7,8 +7,10 @@ class BookingService
 
   def book!
     @ticket = Ticket.available.find(ticket_id)
+
     @ticket.with_lock do
       if @ticket.update(owner_id: owner.id)
+          @ticket.flight.update(quantity: @ticket.flight.quantity - 1)
         { notice: "You've successfully booked" }
       elsif this_flight_was_booked?
         { alert: "You've already booked the ticket this flight" }
