@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'flights#index'
+    resources :users, only: %i(index destroy)
     resources :flights do
       resources :tickets, only: %i(show edit update destroy)
     end
