@@ -8,5 +8,6 @@ html
   body id="#{params[:controller]}"
     = render 'layouts/navbar'
     .container
+      = render 'layouts/search_form'
       = render 'layouts/flash'
       = yield
