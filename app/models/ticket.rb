@@ -7,6 +7,7 @@ class Ticket < ApplicationRecord
   belongs_to :owner, class_name: 'User', optional: true
 
   scope :available, -> { where(owner_id: nil) }
+
   scope :search, ->(options) {
     joins(:flight)
     .joins("INNER JOIN locations departures ON flights.departure_id = departures.id")
@@ -31,6 +32,5 @@ class Ticket < ApplicationRecord
 
       false
   end
-
 
 end
