@@ -1,5 +1,5 @@
 tr
-  td = user.email
+  td = link_to user.email, [:admin, user]
   td = user.remember_created_at
   td = user.current_sign_in_at
   td = user.last_sign_in_at
@@ -7,3 +7,4 @@ tr
   td = user.current_sign_in_ip
   td = user.created_at
   td = user.tickets.count
+  td = link_to "Delete", [:admin, user], method: :delete, data: {confirm: 'Sure?'}

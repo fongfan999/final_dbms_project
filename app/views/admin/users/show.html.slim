@@ -1,0 +1,27 @@
+blockquote
+  p
+    strong Email: 
+    = @user.email
+  p 
+    strong Remember created at: 
+    = @user.remember_created_at
+  p 
+    strong Current sign in at: 
+    = @user.current_sign_in_at
+  p 
+    strong Last sign in at: 
+    = @user.last_sign_in_at
+  p 
+    strong Sign in count: 
+    = @user.sign_in_count
+  p 
+    strong Current sign in ip: 
+    = @user.current_sign_in_ip
+  p 
+    strong Created at: 
+    = @user.created_at
+  p 
+    strong Ticket count: 
+    = @tickets.count
+
+  = render 'admin/tickets/tickets', tickets: @tickets
